@@ -1,0 +1,106 @@
+<GettingStarted>:
+    name: 'starter'
+
+    # Background
+    Image:
+        source: "assets/Bubbles bg.png"
+        size_hint: 1.4, 1.4
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        allow_stretch: True
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: 40
+        padding: 0, 30
+
+        # allow sliding carousel effect
+        MDCarousel:
+            id: carousel
+            direction: "right"
+
+            # 1st screen
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                padding: 20, 20
+                size_hint_max_x: 400
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                Image:
+                    source: "assets/Title.png"
+                    size_hint_y: 0.3
+
+                Image:
+                    source: "assets/FirstSlideFigure.png"
+                    size_hint_max_y: 225
+                    pos_hint: {'center_x': 0.45}
+
+                Image:
+                    source: "assets/FirstSlideText.png"
+                    size_hint_y: 0.2
+
+            # 2nd screen
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: 20
+                padding: 20, 25
+                size_hint_max_x: 400
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                Image:
+                    source: "assets/SecondSlideFigure.png"
+
+                Image:
+                    source: "assets/SecondSlideText.png"
+                    size_hint_y: 0.25
+
+            # 3rd screen
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: 25
+                padding: 20, 20
+                size_hint_max_x: 400
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                Image:
+                    source: "assets/ThirdSlideFigure.png"
+
+                Image:
+                    source: "assets/ThirdSlideText.png"
+                    size_hint_y: 0.55
+
+                MDRectangleFlatButton:
+                    text: "Get Started"
+                    font_size: sp(26)
+                    text_color: "white"
+                    line_color: "purple"
+                    md_bg_color: "purple"
+                    rounded_button: True
+                    pos_hint: {'center_x': 0.5}
+                    on_release: root.change_screen("up", "dashboard")
+
+        # circles below indicating screen index
+        MDRelativeLayout:
+            height: 20
+            size_hint_y: None
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 40
+                adaptive_width: True
+                pos_hint: {'center_x': 0.5}
+
+                Circle:
+                    icon: "circle" if carousel.index == 0 else "circle-outline"
+
+                Circle:
+                    icon: "circle" if carousel.index == 1 else "circle-outline"
+
+                Circle:
+                    icon: "circle" if carousel.index == 2 else "circle-outline"
+
+
+# dynamic class for circle icons
+<Circle@MDIcon>:
+    theme_text_color: "Custom"
+    text_color: "orange"

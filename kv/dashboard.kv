@@ -1,0 +1,53 @@
+<NotesDashboard>:
+    name: "dashboard"
+    notes_area: notes_area
+
+    # main container
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        # top toolbar
+        MDTopAppBar:
+            title: "Your Notes"
+            anchor_title: "left"
+            elevation: 0
+            md_bg_color: "#E79F48"
+            left_action_items: [["menu", lambda a: root.open_menu(a)]]
+            pos_hint: {'top': 1}
+
+        # notes view
+        MDScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDList:
+                id: notes_area
+                spacing: 30
+                padding: (20, 20)
+                adaptive_height: True
+
+        # space filler below
+        Widget:
+            height: dp(25)
+            size_hint_y: None
+
+    # Button for adding new note
+    MDFloatingActionButton:
+        icon: "circle-edit-outline"
+        icon_size: "30sp"
+        elevation: 0
+        line_width: 1.4
+        line_color: "#D28957"
+        md_bg_color: "#E79F48"
+        pos_hint: {'right': 0.95, 'y': 0.05}
+        on_release:
+            root.change_screen("up", "edit_notes")
+            root.manager.get_screen("edit_notes").open_note("dashboard")
+
+
+# menu item
+<IconListItem>:
+    bg_color: "#FFE4AE"
+
+    IconLeftWidgetWithoutTouch:
+        icon: root.icon

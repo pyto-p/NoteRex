@@ -1,0 +1,66 @@
+<DeletedNotes>:
+    ripple_behavior: True
+    size_hint_y: None
+    height: dp(100)
+    anchor: "right"
+    max_opened_x: dp(65)
+    max_swipe_x: 0.9
+
+    # Content under the card
+    MDCardSwipeLayerBox:
+        radius: 10
+
+        # space filler to push icon to the right
+        Widget:
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_width: True
+            padding: (10, 0)
+
+            # Action button 1: To restore
+            SideButtons:
+                icon: "restore"
+                on_press: root.restore_note()
+
+            # Action button 2: To delete
+            SideButtons:
+                icon: "trash-can"
+                on_press: root.open_dialog()
+
+    # Content of the card in front
+    MDCardSwipeFrontBox:
+        orientation: 'vertical'
+        ripple_behavior: True
+        line_color: (0, 0, 0, 0.5)
+        md_bg_color: "#FFE4AE"
+        radius: 10
+        elevation: 0
+        padding: 20
+        height: dp(100)
+        size_hint_y: None
+        on_release: root.view_card()
+
+        MDBoxLayout:
+            id: content
+            MDLabel:
+                text: root.deleted_note.u_content
+                bold: True
+                shorten: True
+                shorten_from: "right"
+                text_size: (21, 0)
+                font_size: sp(20)
+
+        MDLabel:
+            text: root.deleted_note.u_date_modified
+            font_size: sp(14)
+            theme_text_color: "Hint"
+
+
+# Template for every entry in the Trash Bin
+<SideButtons@MDIconButton>:
+    halign: "right"
+    text_color: "#E79F48"
+    theme_text_color: "Custom"
+    size_hint_x: None
+    pos_hint: {"center_y": 0.5}

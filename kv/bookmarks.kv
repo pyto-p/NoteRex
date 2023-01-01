@@ -1,0 +1,32 @@
+<BookMarks>:
+    name: "bookmarks"
+    notes_area: notes_area
+
+    # main container
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        # top toolbar
+        MDTopAppBar:
+            title: "Bookmarks"
+            anchor_title: "left"
+            elevation: 0
+            md_bg_color: "#E79F48"
+            left_action_items: [["arrow-left", lambda a: root.change_screen("right", "dashboard")]]
+
+        # notes view
+        MDScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDGridLayout:
+                id: notes_area
+                cols: 1
+                spacing: 30
+                padding: (20, 20)
+                adaptive_height: True
+
+        # temporary space filler
+        Widget:
+            height: dp(25)
+            size_hint_y: None

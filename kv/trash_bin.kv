@@ -1,0 +1,31 @@
+<TrashBin>:
+    name: "trash_bin"
+    u_deleted_list: deleted_list
+
+    # Container for the Trash Bin Screen
+    MDBoxLayout:
+        orientation: "vertical"
+
+        # top toolbar
+        MDTopAppBar:
+            title: "Trash Bin"
+            anchor_title: "left"
+            elevation: 0
+            md_bg_color: "#E79F48"
+            left_action_items: [["arrow-left", lambda a: root.change_screen("right", "dashboard")]]
+            right_action_items: [["dots-vertical", lambda a: root.open_menu(a)]]
+
+        # contains swipable cards
+        MDScrollView:
+            scroll_timeout: 100
+            do_scroll_y: True
+
+            MDList:
+                id: deleted_list
+                spacing: dp(10)
+                padding: 20, 20
+
+        # space filler below
+        Widget:
+            height: dp(25)
+            size_hint_y: None

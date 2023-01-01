@@ -1,0 +1,19 @@
+<EmptyScreenMessage>:
+    orientation: 'vertical'
+    size_hint: 0.9, 0.4
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    Image:
+        source: root.img_path
+        color: (1, 1, 1, 0.5)
+        size_hint: 0.7, 0.7
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    MDLabel:
+        text: root.message # "Dino can bookmark\n your notes"
+        color: (0, 0, 0, 0.5)
+        bold: True
+        halign: "center"
+        font_size: sp(22)
+        height: dp(30)
+        size_hint_y: None

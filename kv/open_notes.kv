@@ -1,0 +1,74 @@
+#: import from_hex kivy.utils.get_color_from_hex
+
+<OpenNotes>:
+    # screen properties
+    u_toolbar: toolbar
+    u_txt_input: txt_input
+    u_button_bar: button_bar
+    name: 'edit_notes'
+
+    MDBoxLayout:
+        id: container
+        orientation: 'vertical'
+
+        # top menu
+        MDTopAppBar:
+            id: toolbar
+            title: root.u_state
+            anchor_title: "left"
+            elevation: 0
+            md_bg_color: "#E79F48"
+            left_action_items: [["arrow-left", lambda a: root.change_screen("down", root.from_screen)]]
+            right_action_items: [[""]]
+
+        # text editor
+        TextInput:
+            id: txt_input
+            padding: (15, 15, 15, 0)
+            font_size: sp(17)
+            background_active: ""
+            background_normal: ""
+            background_disabled_normal: ""
+            background_color: from_hex("#FFE4AE")
+            on_focus: root.editing(self.focus)
+
+        # containes the editing buttons bar below
+        MDRelativeLayout:
+            id: button_bar
+            height: button_space.height
+            size_hint_y: None
+            md_bg_color: "#FFE4AE"
+
+            # contains all the editing buttons
+            MDBoxLayout:
+                id: button_space
+                spacing: dp(25)
+                padding: (0, 10)
+                md_bg_color: "#FFE4AE"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5}
+
+                EditingIcon:
+                    icon: "format-letter-case"
+                    on_release: root.open_format_menu()
+
+                EditingIcon:
+                    icon: "attachment"
+                    on_release: root.attach_file()
+
+                EditingIcon:
+                    icon: "trash-can"
+                    on_release: root.open_dialog()
+
+                EditingIcon:
+                    icon: "marker"
+                    on_release: print("going to draw!")
+
+
+# dynamic class for bottom bar menu
+<EditingIcon@MDIconButton>:
+    icon_size: dp(30)
+    theme_icon_color: "Custom"
+    icon_color: "#ffffff"
+    md_bg_color: "#E79F48"
+    pos_hint: {'center_y': 0.5}

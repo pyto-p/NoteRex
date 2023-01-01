@@ -1,0 +1,32 @@
+<NoteCard>:
+    # note card properties
+    orientation: 'vertical'
+    ripple_behavior: True
+    line_color: (0, 0, 0, 0.5)
+    md_bg_color: "#FFE4AE"
+    radius: 10
+    elevation: 0
+    padding: 20
+    height: dp(100)
+    size_hint: 0.85, None
+    pos_hint: {'center_x': 0.5}
+    on_press:
+        self.view()
+        self.change_screen("up", "edit_notes")
+
+    # note content
+    MDBoxLayout:
+        id: content
+        MDLabel:
+            text: root.note.u_content
+            bold: True
+            shorten: True
+            shorten_from: "right"
+            text_size: (21, 0)
+            font_size: sp(20)
+
+    # note date
+    MDLabel:
+        text: root.note.u_date_modified
+        font_size: sp(14)
+        theme_text_color: "Hint"
