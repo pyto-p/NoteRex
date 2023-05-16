@@ -1,4 +1,4 @@
-# Note-Taking-App
+# NoteRex
 
 A mobile note taking app created using Kivy. 
 
